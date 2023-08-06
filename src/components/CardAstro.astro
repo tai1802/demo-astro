@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  count: number;
+}
+
+const { title, count } = Astro.props;
+const countNum: number = count || 0;
+---
+
+<script>
+  const handleOnclickIncrease = () => {
+    
+  };
+
+  document.querySelectorAll("#increase").forEach((item) => {
+    item.addEventListener("click", handleOnclickIncrease);
+  });
+</script>
+
+<li class="link-card">
+  <h2>
+    {title}
+    <span>&rarr;</span>
+  </h2>
+  <p>
+    {countNum}
+  </p>
+  <button id="increase">increase</button>
+  <button id="reduced">reduced</button>
+</li>
+<style scoped></style>
