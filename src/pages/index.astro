@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardAstro from "../components/CardAstro.astro";
-
+import CardVue from "../components/CardVue.vue";
 import { get } from "../api/quote";
 import type { Quote } from "../types/quote";
 
@@ -13,8 +13,15 @@ const quote: Quote[] = data.quote;
 <Layout title="Welcome to Astro.">
   <main>
     <ul role="list" class="link-card-grid">
-      {quote.map((item: Quote) => <CardAstro id={item.id} title={item.text} author={item.author} />)}
+      {
+        quote.map((item: Quote) => (
+          <CardAstro id={item.id} title={item.text} author={item.author}>
+            <CardVue client:load />
+          </CardAstro>
+        ))
+      }
     </ul>
+    <CardVue client:click />
   </main>
 </Layout>
 

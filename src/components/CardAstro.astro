@@ -12,7 +12,7 @@ const { title, author } = Astro.props;
   const backgroundColors = ["blanchedalmond", "aliceblue", "aqua", "blanchedalmond"];
   const handleChangeStyle = (event: Event, item: HTMLDivElement) => {
     event.stopPropagation();
-    console.log("change style", (item.style.backgroundColor = backgroundColors[Math.floor(Math.random() * 3)]));
+    item.style.backgroundColor = backgroundColors[Math.floor(Math.random() * 3)];
   };
 
   document.querySelectorAll("div.quote-container").forEach((item: Element) => {
