@@ -1,32 +1,39 @@
 ---
 interface Props {
+  id: string;
   title: string;
-  count: number;
+  author?: string;
 }
 
-const { title, count } = Astro.props;
-const countNum: number = count || 0;
+const { title, author } = Astro.props;
 ---
 
 <script>
-  const handleOnclickIncrease = () => {
-    
+  const backgroundColors = ["blanchedalmond", "aliceblue", "aqua", "blanchedalmond"];
+  const handleChangeStyle = (event: Event, item: HTMLDivElement) => {
+    event.stopPropagation();
+    console.log("change style", (item.style.backgroundColor = backgroundColors[Math.floor(Math.random() * 3)]));
   };
 
-  document.querySelectorAll("#increase").forEach((item) => {
-    item.addEventListener("click", handleOnclickIncrease);
+  document.querySelectorAll("div.quote-container").forEach((item: Element) => {
+    item.addEventListener("click", (event: Event) => handleChangeStyle(event, item as HTMLDivElement));
   });
 </script>
 
-<li class="link-card">
+<div class="quote-container">
   <h2>
     {title}
-    <span>&rarr;</span>
   </h2>
-  <p>
-    {countNum}
-  </p>
-  <button id="increase">increase</button>
-  <button id="reduced">reduced</button>
-</li>
-<style scoped></style>
+  <div class="author">
+    {author}
+  </div>
+  <slot />
+</div>
+<style scoped lang="scss">
+  .quote-container {
+    @apply text-black border text-base px-3 py-2;
+    .author {
+      @apply italic;
+    }
+  }
+</style>
