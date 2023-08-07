@@ -13,15 +13,11 @@ const quote: Quote[] = data.quote;
 <Layout title="Welcome to Astro.">
   <main>
     <ul role="list" class="link-card-grid">
-      {
-        quote.map((item: Quote) => (
-          <CardAstro id={item.id} title={item.text} author={item.author}>
-            <CardVue client:load />
-          </CardAstro>
-        ))
-      }
+      {quote.map((item: Quote) => <CardAstro id={item.id} title={item.text} author={item.author} />)}
     </ul>
-    <CardVue client:click />
+    <CardVue class:list={"mt-5 px-3 py-2"} client:click>
+      <CardAstro id="test" title="testtttt" author="" slot="vue-slot" />
+    </CardVue>
   </main>
 </Layout>
 

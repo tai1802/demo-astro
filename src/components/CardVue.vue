@@ -8,6 +8,7 @@
         <button @click="count--">Decrease</button>
       </div>
     </div>
+    <slot name="vue-slot"></slot>
   </div>
 </template>
 
