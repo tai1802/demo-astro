@@ -1,6 +1,9 @@
 <template>
   <!--write to the imported store using `.set`-->
-  <button @click="isCartOpen.set(!$isCartOpen)">Cart</button>
+  <div>
+    <button @click="isCartOpen.set(!$isCartOpen)">Cart</button>
+    <slot></slot>
+  </div>
 </template>
 
 <script setup>
